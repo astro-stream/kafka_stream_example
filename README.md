@@ -100,10 +100,11 @@ For client authentication, the DefaultAzureCredential from the Azure Python SDK 
 
 **Blob Store connection string for airlfow and Databricks** 
 
-Airflow Connection example (stored in Key Vault airflow-connections)
+Airflow Connection example (stored in Key Vault airflow-connections):
 `wasb:///?extra__wasb__connection_string=DefaultEndpointsProtocol%3Dhttps%3BAccountName%3DmyAccountName%3BAccountKey%myAccountKey%3BEndpointSuffix%3Dcore.windows.net`
 
 Databricks Connection example (can be stored in Secrets Mount):
+
 `spark.conf.set(f"fs.azure.account.key.{storage_acct}.dfs.core.windows.net","myStorageAccountKey")`
 
 ### Setup on M1 Mac
