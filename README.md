@@ -87,12 +87,14 @@ while True:
 
 ## Services to Configure 
 
-**Azure Key Vault** With the Azure Key Vault secrets backend in the docker file you will need the Airflow Connections and Variables to be stored in the Key Vault with the following prefixes conenctons: 'airflow-connections' and variables: 'airflow-variables'. See the keybault used in this example: 
-![alt text](https://github.com/astro-stream/kafka_stream_example/images/keyVault.png)
+**Azure Key Vault** 
+With the Azure Key Vault secrets backend in the docker file you will need the Airflow Connections and Variables to be stored in the Key Vault with the following prefixes conenctons: 'airflow-connections' and variables: 'airflow-variables'. See the keybault used in this example: 
+![alt text](https://github.com/astro-stream/kafka_stream_example/blob/main/images/keyVault.png)
 
 
-**.env File** You will also need to configure an App SPN that has access to the key vault and include the APP SPN credentials in your .env file so the Airflow has access to the Key Vault Secrets backend: 
-![alt text](https://github.com/astro-stream/kafka_stream_example/images/secretsBackend.png) 
+**.env File** 
+You will also need to configure an App SPN that has access to the key vault and include the APP SPN credentials in your .env file so the Airflow has access to the Key Vault Secrets backend: 
+![alt text](https://github.com/astro-stream/kafka_stream_example/blob/main/images/secretsBackend.png) 
 
 For client authentication, the DefaultAzureCredential from the Azure Python SDK is used as credential provider, which supports service principal, managed identity and user credentials.
 
