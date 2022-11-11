@@ -18,7 +18,7 @@ Cloud Services used in example:
 `create a kafka producer to your cloud topic`
 
 ```python 
-    # producer.py 
+# producer.py 
     
 import time
 import json
@@ -88,7 +88,7 @@ while True:
 ## Services to Configure 
 
 **Azure Key Vault** 
-With the Azure Key Vault secrets backend in the docker file you will need the Airflow Connections and Variables to be stored in the Key Vault with the following prefixes conenctons: 'airflow-connections' and variables: 'airflow-variables'. See the keybault used in this example: 
+With the Azure Key Vault Secrets Backend in the Docker file you will need the Airflow Connections and Variables to be stored in the Key Vault with the following prefixes: connections -> 'airflow-connections' and variables -> 'airflow-variables'. See the the Key Vault (lunar-kv) used in this example: 
 ![alt text](https://github.com/astro-stream/kafka_stream_example/blob/main/images/keyVault.png)
 
 
@@ -98,8 +98,15 @@ You will also need to configure an App SPN that has access to the key vault and 
 
 For client authentication, the DefaultAzureCredential from the Azure Python SDK is used as credential provider, which supports service principal, managed identity and user credentials.
 
+**Blob Store connection string for airlfow and Databricks** 
+
+Airflow Connection example (stored in Key Vault airflow-connections)
+`wasb:///?extra__wasb__connection_string=DefaultEndpointsProtocol%3Dhttps%3BAccountName%3DmyAccountName%3BAccountKey%myAccountKey%3BEndpointSuffix%3Dcore.windows.net`
+
+Databricks Connection example (can be stored in Secrets Mount):
+`spark.conf.set(f"fs.azure.account.key.{storage_acct}.dfs.core.windows.net","myStorageAccountKey")`
 
 ### Setup on M1 Mac
 Installing on M1 chip means a install of the librdkafka library before you can pip install confluent-kafka
-```pip3 install --global-option=build_ext --global-option="-I/opt/homebrew/Cellar/librdkafka/1.9.2/include" --global-option="-L/opt/homebrew/Cellar/librdkafka/1.9.2/lib" confluent-kafka
-```
+
+`pip3 install --global-option=build_ext --global-option="-I/opt/homebrew/Cellar/librdkafka/1.9.2/include" --global-option="-L/opt/homebrew/Cellar/librdkafka/1.9.2/lib" confluent-kafka`
